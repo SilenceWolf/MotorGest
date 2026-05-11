@@ -4,10 +4,10 @@ Projet de POO avancée - Bachelor 3 Informatique - ESIEE-IT
 
 ## Groupe
 
-- Kalotta
-- Matheo
-- Yohan
-- Louis
+- Kalotta Martin
+- Matheo Isidoro
+- Yohan Cana
+- Louis Guillory
 
 ## Domaine
 
