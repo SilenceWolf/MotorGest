@@ -1,0 +1,10 @@
+categorie;immat;marque;modele;kilometrage;etat;extra
+Leger;AA-123-AA;Renault;Clio;45000;DISPONIBLE;5
+Leger;BB-456-BB;Peugeot;208;32000;DISPONIBLE;5
+Leger;GG-111-GG;Citroen;C3;78000;DISPONIBLE;5
+Lourd;CC-789-CC;Volvo;FH16;145000;DISPONIBLE;26.0
+Lourd;DD-321-DD;Scania;R450;89000;DISPONIBLE;19.5
+Lourd;HH-222-HH;MAN;TGX;201000;EN_MAINTENANCE;24.0
+Special;EE-654-EE;Mercedes;Sprinter;67000;DISPONIBLE;Frigo|3
+Special;FF-987-FF;Iveco;Daily;12000;DISPONIBLE;Ambulance|5
+Special;II-333-II;Ford;Transit;55000;DISPONIBLE;Depannage|4
