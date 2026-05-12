@@ -4,7 +4,7 @@ Projet de POO avancée - Bachelor 3 Informatique - ESIEE-IT
 
 ## Groupe
 
-* Kalotta Martin
+* Karlotta Martin
 * Matheo Isidoro
 * Yohan Cana
 * Louis Guillory
@@ -78,7 +78,7 @@ colores, en-tetes de section, boutons aux couleurs semantiques
 
 ## Repartition des taches
 
-* **Kalotta** : classes abstraites Vehicule et Mission, interface
+* **Karlotta** : classes abstraites Vehicule et Mission, interface
 Identifiable, Registre generique borne, exceptions custom, classe
 Incident, README et donnees de demo
 * **Matheo** : interfaces metier (Assignable, Maintenable, Trackable,
