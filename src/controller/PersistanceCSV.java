@@ -14,6 +14,7 @@ public class PersistanceCSV {
                 String extra = "";
                 if (v instanceof VehiculeLeger) extra = String.valueOf(((VehiculeLeger) v).getNbPlaces());
                 else if (v instanceof VehiculeLourd) extra = String.valueOf(((VehiculeLourd) v).getChargeMaxTonnes());
+                else if (v instanceof VehiculeSpecial) extra = ((VehiculeSpecial) v).getTypeSpecial() + "|" + ((VehiculeSpecial) v).getNiveauUrgence();
                 pw.println(v.getCategorie() + ";" + v.getImmatriculation() + ";" + v.getMarque() + ";"
                         + v.getModele() + ";" + v.getKilometrage() + ";" + v.getEtat() + ";" + extra);
             }
@@ -34,6 +35,10 @@ public class PersistanceCSV {
                         break;
                     case "Lourd":
                         v = new VehiculeLourd(p[1], p[2], p[3], Integer.parseInt(p[4]), Double.parseDouble(p[6]));
+                        break;
+                    case "Special":
+                        String[] sp = p[6].split("\\|");
+                        v = new VehiculeSpecial(p[1], p[2], p[3], Integer.parseInt(p[4]), sp[0], Integer.parseInt(sp[1]));
                         break;
                     default:
                         continue;
@@ -79,13 +84,30 @@ public class PersistanceCSV {
 
     public static void sauvegarderMissions(List<Mission> missions, String fichier) throws IOException {
         try (PrintWriter pw = new PrintWriter(new FileWriter(fichier))) {
-            pw.println("type;id;depart;arrivee;dateDebut;distance;statut;immatVehicule;idChauffeur");
+            pw.println("type;id;depart;arrivee;dateDebut;distance;statut;immatVehicule;idChauffeur;extra");
             for (Mission m : missions) {
                 String immat = m.getVehicule() != null ? m.getVehicule().getImmatriculation() : "";
                 String idCh = m.getChauffeur() != null ? m.getChauffeur().getId() : "";
+                String extra = "";
+                if (m instanceof MissionLongue) extra = String.valueOf(((MissionLongue) m).getDureeEstimeeJours());
                 pw.println(m.getType() + ";" + m.getId() + ";" + m.getDepart() + ";" + m.getArrivee() + ";"
-                        + m.getDateDebut() + ";" + m.getDistanceKm() + ";" + m.getStatut() + ";" + immat + ";" + idCh);
+                        + m.getDateDebut() + ";" + m.getDistanceKm() + ";" + m.getStatut() + ";" + immat + ";" + idCh + ";" + extra);
             }
+        }
+    }
+
+    public static void exporterMissionsTerminees(List<Mission> missions, String fichier) throws IOException {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fichier))) {
+            pw.println("ID;Type;Depart;Arrivee;Distance(km);Vehicule;Chauffeur;Cout(EUR)");
+            missions.stream()
+                    .filter(m -> m.getStatut() == StatutMission.TERMINEE)
+                    .forEach(m -> {
+                        String immat = m.getVehicule() != null ? m.getVehicule().getImmatriculation() : "";
+                        String idCh = m.getChauffeur() != null ? m.getChauffeur().getId() : "";
+                        pw.println(m.getId() + ";" + m.getType() + ";" + m.getDepart() + ";" + m.getArrivee()
+                                + ";" + m.getDistanceKm() + ";" + immat + ";" + idCh
+                                + ";" + String.format("%.2f", m.calculerCout()));
+                    });
         }
     }
 }
