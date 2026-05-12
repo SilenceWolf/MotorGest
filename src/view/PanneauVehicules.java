@@ -5,6 +5,8 @@ import model.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
@@ -63,7 +65,7 @@ public class PanneauVehicules extends JPanel implements Rafraichissable {
 
         barre.add(Box.createHorizontalStrut(12));
         barre.add(Theme.etiquette("Categorie :"));
-        filtreCategorie = Theme.combo(new String[]{"Toutes", "Leger", "Lourd"});
+        filtreCategorie = Theme.combo(new String[]{"Toutes", "Leger", "Lourd", "Special"});
         barre.add(filtreCategorie);
 
         barre.add(Box.createHorizontalStrut(12));
@@ -75,19 +77,24 @@ public class PanneauVehicules extends JPanel implements Rafraichissable {
         barre.add(filtreEtat);
 
         barre.add(Box.createHorizontalStrut(12));
-        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer");
-        JButton btnReset   = Theme.boutonNeutre("Reinitialiser");
-        barre.add(btnFiltrer);
+        JButton btnReset = Theme.boutonNeutre("Reinitialiser");
         barre.add(btnReset);
 
-        btnFiltrer.addActionListener(e -> appliquerFiltres());
         btnReset.addActionListener(e -> {
             champRecherche.setText("");
             filtreCategorie.setSelectedIndex(0);
             filtreEtat.setSelectedIndex(0);
             modele.setDonnees(gf.getVehicules());
         });
-        champRecherche.addActionListener(e -> appliquerFiltres());
+
+        filtreCategorie.addActionListener(e -> appliquerFiltres());
+        filtreEtat.addActionListener(e -> appliquerFiltres());
+
+        champRecherche.getDocument().addDocumentListener(new DocumentListener() {
+            @Override public void insertUpdate(DocumentEvent e) { appliquerFiltres(); }
+            @Override public void removeUpdate(DocumentEvent e) { appliquerFiltres(); }
+            @Override public void changedUpdate(DocumentEvent e) { appliquerFiltres(); }
+        });
 
         return barre;
     }
@@ -202,6 +209,11 @@ public class PanneauVehicules extends JPanel implements Rafraichissable {
             sb.append("Prochain entretien : ").append(m.getProchainEntretien()).append("\n");
             sb.append("Km avant entretien : ").append(m.getKmAvantEntretien()).append("\n");
             sb.append("Urgent : ").append(m.entretienUrgent() ? "OUI" : "NON").append("\n");
+        }
+        if (v instanceof Urgence) {
+            Urgence u = (Urgence) v;
+            sb.append("Niveau urgence : ").append(u.getNiveauUrgence()).append("\n");
+            sb.append("Motif : ").append(u.getMotifUrgence()).append("\n");
         }
         if (v instanceof VehiculeLeger) sb.append("Places : ").append(((VehiculeLeger) v).getNbPlaces()).append("\n");
         if (v instanceof VehiculeLourd) sb.append("Charge max : ").append(((VehiculeLourd) v).getChargeMaxTonnes()).append(" t\n");
