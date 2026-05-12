@@ -11,15 +11,18 @@ import java.time.format.DateTimeFormatter;
 public class DialogMission extends JDialog {
 
     private Mission resultat;
+    private JComboBox<String> typeCombo;
     private JTextField idField;
     private JTextField departField;
     private JTextField arriveeField;
     private JTextField dateField;
     private JTextField distanceField;
+    private JTextField dureeField;
+    private JLabel dureeLabel;
 
     public DialogMission(JFrame parent) {
         super(parent, "Nouvelle mission", true);
-        setSize(460, 380);
+        setSize(460, 420);
         setLocationRelativeTo(parent);
         getContentPane().setBackground(Theme.FOND_CARTE);
         construire();
@@ -37,6 +40,13 @@ public class DialogMission extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         int row = 0;
+        gbc.gridx = 0; gbc.gridy = row; gbc.weightx = 0;
+        form.add(Theme.etiquette("Type"), gbc);
+        gbc.gridx = 1; gbc.weightx = 1;
+        typeCombo = Theme.combo(new String[]{"Courte", "Longue"});
+        form.add(typeCombo, gbc);
+        row++;
+
         gbc.gridx = 0; gbc.gridy = row; gbc.weightx = 0;
         form.add(Theme.etiquette("ID"), gbc);
         gbc.gridx = 1; gbc.weightx = 1;
@@ -73,9 +83,27 @@ public class DialogMission extends JDialog {
         form.add(distanceField, gbc);
         row++;
 
+        gbc.gridx = 0; gbc.gridy = row; gbc.weightx = 0;
+        dureeLabel = Theme.etiquette("Duree (jours)");
+        form.add(dureeLabel, gbc);
+        gbc.gridx = 1; gbc.weightx = 1;
+        dureeField = Theme.champTexte(20);
+        form.add(dureeField, gbc);
+        dureeLabel.setVisible(false);
+        dureeField.setVisible(false);
+        row++;
+
         gbc.gridx = 0; gbc.gridy = row; gbc.gridwidth = 2; gbc.weightx = 1;
         JLabel info = Theme.etiquetteDouce("Format date : jj/MM/aaaa HH:mm");
         form.add(info, gbc);
+
+        typeCombo.addActionListener(e -> {
+            boolean longue = "Longue".equals(typeCombo.getSelectedItem());
+            dureeLabel.setVisible(longue);
+            dureeField.setVisible(longue);
+            revalidate();
+            repaint();
+        });
 
         add(form, BorderLayout.CENTER);
         add(creerBoutons(), BorderLayout.SOUTH);
@@ -96,8 +124,8 @@ public class DialogMission extends JDialog {
         JPanel bas = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 12));
         bas.setBackground(Theme.FOND);
         bas.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Theme.BORDURE));
-        JButton ok      = Theme.boutonSucces("Valider");
-        JButton annuler = Theme.boutonNeutre("Annuler");
+        JButton ok      = Theme.boutonSucces("Valider", "[v]");
+        JButton annuler = Theme.boutonNeutre("Annuler", "[x]");
         bas.add(annuler);
         bas.add(ok);
         ok.addActionListener(e -> valider());
@@ -116,7 +144,12 @@ public class DialogMission extends JDialog {
                 JOptionPane.showMessageDialog(this, "Champs obligatoires manquants");
                 return;
             }
-            resultat = new MissionCourte(id, dep, arr, date, dist);
+            if ("Courte".equals(typeCombo.getSelectedItem())) {
+                resultat = new MissionCourte(id, dep, arr, date, dist);
+            } else {
+                int duree = Integer.parseInt(dureeField.getText().trim());
+                resultat = new MissionLongue(id, dep, arr, date, dist, duree);
+            }
             dispose();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Valeur numerique invalide");
