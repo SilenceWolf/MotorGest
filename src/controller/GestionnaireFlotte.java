@@ -11,12 +11,14 @@ public class GestionnaireFlotte {
     private final Registre<Vehicule> vehicules;
     private final Registre<Chauffeur> chauffeurs;
     private final Registre<Mission> missions;
+    private final List<Incident> incidents;
     private final PriorityQueue<Mission> filePriorite;
 
     public GestionnaireFlotte() {
         this.vehicules = new Registre<>();
         this.chauffeurs = new Registre<>();
         this.missions = new Registre<>();
+        this.incidents = new ArrayList<>();
         this.filePriorite = new PriorityQueue<>(Comparator.comparing(Mission::getDateDebut));
     }
 
@@ -39,6 +41,7 @@ public class GestionnaireFlotte {
     public List<Vehicule> getVehicules() { return vehicules.tout(); }
     public List<Chauffeur> getChauffeurs() { return chauffeurs.tout(); }
     public List<Mission> getMissions() { return missions.tout(); }
+    public List<Incident> getIncidents() { return new ArrayList<>(incidents); }
 
     public Vehicule trouverVehicule(String immat) { return vehicules.trouver(immat); }
     public Chauffeur trouverChauffeur(String id) { return chauffeurs.trouver(id); }
@@ -80,6 +83,8 @@ public class GestionnaireFlotte {
             m.getChauffeur().incrementerMissions();
         }
     }
+
+    public void ajouterIncident(Incident i) { incidents.add(i); }
 
     public List<Vehicule> rechercherVehicules(String motCle, String categorie, EtatVehicule etat) {
         return vehicules.tout().stream()
