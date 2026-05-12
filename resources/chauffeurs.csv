@@ -1,0 +1,7 @@
+id;nom;prenom;permis;dispo;nbMissions
+CH001;Dupont;Jean;B,C,;true;0
+CH002;Martin;Sophie;B,;true;0
+CH003;Bernard;Luc;B,C,CE,;true;0
+CH004;Petit;Marie;B,D,;true;0
+CH005;Lefevre;Antoine;B,C,;true;0
+CH006;Moreau;Julie;B,;true;0
