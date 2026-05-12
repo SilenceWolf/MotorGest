@@ -96,8 +96,8 @@ public class DialogMission extends JDialog {
         JPanel bas = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 12));
         bas.setBackground(Theme.FOND);
         bas.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Theme.BORDURE));
-        JButton ok      = Theme.boutonSucces("Valider", "[v]");
-        JButton annuler = Theme.boutonNeutre("Annuler", "[x]");
+        JButton ok      = Theme.boutonSucces("Valider");
+        JButton annuler = Theme.boutonNeutre("Annuler");
         bas.add(annuler);
         bas.add(ok);
         ok.addActionListener(e -> valider());
@@ -119,7 +119,7 @@ public class DialogMission extends JDialog {
             resultat = new MissionCourte(id, dep, arr, date, dist);
             dispose();
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Valeur <numerique> invalide");
+            JOptionPane.showMessageDialog(this, "Valeur numerique invalide");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erreur de saisie : " + ex.getMessage());
         }
