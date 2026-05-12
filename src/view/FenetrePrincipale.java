@@ -17,7 +17,7 @@ public class FenetrePrincipale extends JFrame {
     public FenetrePrincipale(GestionnaireFlotte gf) {
         this.gf = gf;
         setTitle("MotorGest - Gestion de flotte");
-        setSize(1200, 750);
+        setSize(1280, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(Theme.FOND);
@@ -37,6 +37,9 @@ public class FenetrePrincipale extends JFrame {
         onglets.addTab("  Vehicules  ", new PanneauVehicules(gf, this));
         onglets.addTab("  Chauffeurs  ", new PanneauChauffeurs(gf, this));
         onglets.addTab("  Missions  ", new PanneauMissions(gf, this));
+        onglets.addTab("  Disponibilites  ", new PanneauDisponibilites(gf));
+        onglets.addTab("  Incidents  ", new PanneauIncidents(gf));
+        onglets.addTab("  Statistiques  ", new PanneauStatistiques(gf));
 
         add(onglets, BorderLayout.CENTER);
         add(creerBarreEtat(), BorderLayout.SOUTH);
