@@ -29,7 +29,7 @@ public class PanneauVehicules extends JPanel implements Rafraichissable {
     }
 
     private void construire() {
-        add(Theme.enteteSection("Vehicules", "Liste, recherche et gestion des vehicules de la flotte", "[V]"), BorderLayout.NORTH);
+        add(Theme.enteteSection("Vehicules", "Liste, recherche et gestion des vehicules de la flotte"), BorderLayout.NORTH);
         add(creerCentre(), BorderLayout.CENTER);
     }
 
@@ -75,8 +75,8 @@ public class PanneauVehicules extends JPanel implements Rafraichissable {
         barre.add(filtreEtat);
 
         barre.add(Box.createHorizontalStrut(12));
-        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer", "[>]");
-        JButton btnReset   = Theme.boutonNeutre("Reinitialiser", "[~]");
+        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer");
+        JButton btnReset   = Theme.boutonNeutre("Reinitialiser");
         barre.add(btnFiltrer);
         barre.add(btnReset);
 
@@ -118,10 +118,10 @@ public class PanneauVehicules extends JPanel implements Rafraichissable {
     private JPanel creerBarreActions() {
         JPanel bas = Theme.barreActions();
 
-        JButton btnAjouter   = Theme.boutonSucces("Ajouter", "[+]");
-        JButton btnModifier  = Theme.boutonPrimaire("Modifier", "[*]");
-        JButton btnDetails   = Theme.boutonNeutre("Details", "[?]");
-        JButton btnSupprimer = Theme.boutonDanger("Supprimer", "[x]");
+        JButton btnAjouter   = Theme.boutonSucces("Ajouter");
+        JButton btnModifier  = Theme.boutonPrimaire("Modifier");
+        JButton btnDetails   = Theme.boutonNeutre("Details");
+        JButton btnSupprimer = Theme.boutonDanger("Supprimer");
 
         bas.add(btnAjouter);
         bas.add(btnModifier);

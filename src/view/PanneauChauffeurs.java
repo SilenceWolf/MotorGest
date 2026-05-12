@@ -27,7 +27,7 @@ public class PanneauChauffeurs extends JPanel implements Rafraichissable {
     }
 
     private void construire() {
-        add(Theme.enteteSection("Chauffeurs", "Liste, recherche et gestion des chauffeurs", "[C]"), BorderLayout.NORTH);
+        add(Theme.enteteSection("Chauffeurs", "Liste, recherche et gestion des chauffeurs"), BorderLayout.NORTH);
         add(creerCentre(), BorderLayout.CENTER);
     }
 
@@ -67,8 +67,8 @@ public class PanneauChauffeurs extends JPanel implements Rafraichissable {
         barre.add(chkDispo);
 
         barre.add(Box.createHorizontalStrut(12));
-        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer", "[>]");
-        JButton btnReset   = Theme.boutonNeutre("Reinitialiser", "[~]");
+        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer");
+        JButton btnReset   = Theme.boutonNeutre("Reinitialiser");
         barre.add(btnFiltrer);
         barre.add(btnReset);
 
@@ -105,9 +105,9 @@ public class PanneauChauffeurs extends JPanel implements Rafraichissable {
     private JPanel creerBarreActions() {
         JPanel bas = Theme.barreActions();
 
-        JButton btnAjouter   = Theme.boutonSucces("Ajouter", "[+]");
-        JButton btnModifier  = Theme.boutonPrimaire("Modifier", "[*]");
-        JButton btnSupprimer = Theme.boutonDanger("Supprimer", "[x]");
+        JButton btnAjouter   = Theme.boutonSucces("Ajouter");
+        JButton btnModifier  = Theme.boutonPrimaire("Modifier");
+        JButton btnSupprimer = Theme.boutonDanger("Supprimer");
 
         bas.add(btnAjouter);
         bas.add(btnModifier);

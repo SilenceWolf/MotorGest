@@ -45,8 +45,8 @@ public class Theme {
     public static final Font POLICE_SOUSTITRE = new Font("Segoe UI", Font.PLAIN, 12);
     public static final Font POLICE_BOUTON  = new Font("Segoe UI", Font.BOLD, 12);
 
-    public static JButton bouton(String texte, String icone, Color base, Color hover) {
-        JButton b = new JButton(icone + "  " + texte);
+    public static JButton bouton(String texte, Color base, Color hover) {
+        JButton b = new JButton(texte);
         b.setFont(POLICE_BOUTON);
         b.setForeground(TEXTE_CLAIR);
         b.setBackground(base);
@@ -62,10 +62,10 @@ public class Theme {
         return b;
     }
 
-    public static JButton boutonPrimaire(String texte, String icone) { return bouton(texte, icone, PRIMAIRE, PRIMAIRE_HOV); }
-    public static JButton boutonSucces(String texte, String icone)   { return bouton(texte, icone, ACCENT, ACCENT_HOV); }
-    public static JButton boutonDanger(String texte, String icone)   { return bouton(texte, icone, DANGER, DANGER_HOV); }
-    public static JButton boutonNeutre(String texte, String icone)   { return bouton(texte, icone, SECONDAIRE, SECONDAIRE_HOV); }
+    public static JButton boutonPrimaire(String texte) { return bouton(texte, PRIMAIRE, PRIMAIRE_HOV); }
+    public static JButton boutonSucces(String texte)   { return bouton(texte, ACCENT, ACCENT_HOV); }
+    public static JButton boutonDanger(String texte)   { return bouton(texte, DANGER, DANGER_HOV); }
+    public static JButton boutonNeutre(String texte)   { return bouton(texte, SECONDAIRE, SECONDAIRE_HOV); }
 
     public static JTextField champTexte(int colonnes) {
         JTextField t = new JTextField(colonnes);
@@ -97,7 +97,7 @@ public class Theme {
         return l;
     }
 
-    public static JPanel enteteSection(String titre, String sousTitre, String icone) {
+    public static JPanel enteteSection(String titre, String sousTitre) {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(FOND);
         p.setBorder(new EmptyBorder(12, 16, 12, 16));
@@ -106,7 +106,7 @@ public class Theme {
         gauche.setLayout(new BoxLayout(gauche, BoxLayout.Y_AXIS));
         gauche.setOpaque(false);
 
-        JLabel t = new JLabel(icone + "  " + titre);
+        JLabel t = new JLabel(titre);
         t.setFont(POLICE_TITRE);
         t.setForeground(PRIMAIRE);
         gauche.add(t);

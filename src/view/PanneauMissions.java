@@ -27,7 +27,7 @@ public class PanneauMissions extends JPanel implements Rafraichissable {
     }
 
     private void construire() {
-        add(Theme.enteteSection("Missions", "Planification, affectation et suivi des missions", "[M]"), BorderLayout.NORTH);
+        add(Theme.enteteSection("Missions", "Planification, affectation et suivi des missions"), BorderLayout.NORTH);
         add(creerCentre(), BorderLayout.CENTER);
     }
 
@@ -73,8 +73,8 @@ public class PanneauMissions extends JPanel implements Rafraichissable {
         barre.add(filtreDepart);
 
         barre.add(Box.createHorizontalStrut(12));
-        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer", "[>]");
-        JButton btnReset   = Theme.boutonNeutre("Reinitialiser", "[~]");
+        JButton btnFiltrer = Theme.boutonPrimaire("Filtrer");
+        JButton btnReset   = Theme.boutonNeutre("Reinitialiser");
         barre.add(btnFiltrer);
         barre.add(btnReset);
 
@@ -112,11 +112,11 @@ public class PanneauMissions extends JPanel implements Rafraichissable {
     private JPanel creerBarreActions() {
         JPanel bas = Theme.barreActions();
 
-        JButton btnAjouter   = Theme.boutonSucces("Nouvelle mission", "[+]");
-        JButton btnAffecter  = Theme.boutonPrimaire("Affecter", "[>]");
-        JButton btnDemarrer  = Theme.boutonPrimaire("Demarrer", "[!]");
-        JButton btnTerminer  = Theme.bouton("Terminer", "[v]", Theme.ACCENT, Theme.ACCENT_HOV);
-        JButton btnSupprimer = Theme.boutonDanger("Supprimer", "[x]");
+        JButton btnAjouter   = Theme.boutonSucces("Nouvelle mission");
+        JButton btnAffecter  = Theme.boutonPrimaire("Affecter");
+        JButton btnDemarrer  = Theme.boutonPrimaire("Demarrer");
+        JButton btnTerminer  = Theme.bouton("Terminer", Theme.ACCENT, Theme.ACCENT_HOV);
+        JButton btnSupprimer = Theme.boutonDanger("Supprimer");
 
         bas.add(btnAjouter);
         bas.add(btnAffecter);
