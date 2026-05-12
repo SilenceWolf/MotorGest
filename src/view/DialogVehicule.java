@@ -134,8 +134,8 @@ public class DialogVehicule extends JDialog {
         JPanel bas = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 12));
         bas.setBackground(Theme.FOND);
         bas.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Theme.BORDURE));
-        JButton ok      = Theme.boutonSucces("Valider", "[v]");
-        JButton annuler = Theme.boutonNeutre("Annuler", "[x]");
+        JButton ok      = Theme.boutonSucces("Valider");
+        JButton annuler = Theme.boutonNeutre("Annuler");
         bas.add(annuler);
         bas.add(ok);
         ok.addActionListener(e -> valider());

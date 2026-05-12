@@ -31,7 +31,7 @@ public class PanneauStatistiques extends JPanel implements Rafraichissable {
     }
 
     private void construire() {
-        add(Theme.enteteSection("Statistiques", "Tableau de bord et indicateurs cles de la flotte", "[S]"), BorderLayout.NORTH);
+        add(Theme.enteteSection("Statistiques", "Tableau de bord et indicateurs cles de la flotte"), BorderLayout.NORTH);
 
         JPanel centre = new JPanel(new BorderLayout(0, 12));
         centre.setBackground(Theme.FOND);

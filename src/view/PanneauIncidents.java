@@ -26,7 +26,7 @@ public class PanneauIncidents extends JPanel implements Rafraichissable {
     }
 
     private void construire() {
-        add(Theme.enteteSection("Incidents", "Suivi et declaration des incidents sur la flotte", "[I]"), BorderLayout.NORTH);
+        add(Theme.enteteSection("Incidents", "Suivi et declaration des incidents sur la flotte"), BorderLayout.NORTH);
 
         JPanel centre = new JPanel(new BorderLayout(0, 12));
         centre.setBackground(Theme.FOND);
@@ -93,7 +93,7 @@ public class PanneauIncidents extends JPanel implements Rafraichissable {
         carte.add(sp, BorderLayout.CENTER);
 
         JPanel bas = Theme.barreActions();
-        JButton btnAjouter = Theme.boutonSucces("Declarer incident", "[+]");
+        JButton btnAjouter = Theme.boutonSucces("Declarer incident");
         bas.add(btnAjouter);
         carte.add(bas, BorderLayout.SOUTH);
 
